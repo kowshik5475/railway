@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — RailSystem</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="index.html">
+    <div class="logo-icon">🚆</div>
+    RailSystem
+  </a>
+  <div class="nav-links">
+    <a href="index.html">🏠 Dashboard</a>
+    <a href="admin.html" class="active">⚙️ Admin</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!-- Page header -->
+  <div class="page-header">
+    <h1>Database Admin</h1>
+    <p>Schema overview, stored procedures, triggers, and system analytics</p>
+  </div>
+
+  <!-- Stat cards -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon blue">🗄️</div>
+      <div class="stat-body">
+        <div class="stat-label">Tables</div>
+        <div class="stat-value blue">5</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon teal">👁️</div>
+      <div class="stat-body">
+        <div class="stat-label">Views</div>
+        <div class="stat-value teal">3</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon green">⚙️</div>
+      <div class="stat-body">
+        <div class="stat-label">Stored Procedures</div>
+        <div class="stat-value green">3</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon red">⚡</div>
+      <div class="stat-body">
+        <div class="stat-label">Triggers</div>
+        <div class="stat-value red">3</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Schema info cards -->
+  <div class="info-grid">
+    <div class="info-card">
+      <div class="info-card-header">
+        <span>🗄️</span> Tables
+      </div>
+      <ul>
+        <li>Trains</li>
+        <li>Passengers</li>
+        <li>Tickets</li>
+        <li>Cancellation Log</li>
+        <li>Confirmation Log</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <div class="info-card-header">
+        <span>👁️</span> Views
+      </div>
+      <ul>
+        <li>Train Schedule</li>
+        <li>Active Bookings</li>
+        <li>Seat Occupancy</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <div class="info-card-header">
+        <span>⚙️</span> Stored Procedures
+      </div>
+      <ul>
+        <li>Book Ticket</li>
+        <li>Cancel Ticket</li>
+        <li>Booking History</li>
+      </ul>
+    </div>
+    <div class="info-card">
+      <div class="info-card-header">
+        <span>⚡</span> Triggers
+      </div>
+      <ul>
+        <li>Seat Availability</li>
+        <li>Booking Confirmation</li>
+        <li>Cancellation Log</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Analytics -->
+  <div class="panel">
+    <div class="panel-header">
+      <div>
+        <div class="panel-title"><span class="icon">📊</span> System Analytics</div>
+        <div class="panel-subtitle">Capacity and performance metrics</div>
+      </div>
+      <span class="badge badge-blue">Demo data</span>
+    </div>
+    <div class="progress-group">
+      <div class="progress-item">
+        <div class="progress-meta">
+          <span class="progress-label">Seat Occupancy Rate</span>
+          <span class="progress-value">80%</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill blue" style="width:80%"></div></div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-meta">
+          <span class="progress-label">Top Booked Train Score</span>
+          <span class="progress-value">60%</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill green" style="width:60%"></div></div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-meta">
+          <span class="progress-label">Cancellation Rate</span>
+          <span class="progress-value">4.6%</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill amber" style="width:4.6%"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent activity table -->
+  <div class="panel">
+    <div class="panel-header">
+      <div>
+        <div class="panel-title"><span class="icon">📋</span> Recent Activity</div>
+        <div class="panel-subtitle">Latest ticket and system events</div>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Event</th>
+            <th>Train</th>
+            <th>Passenger</th>
+            <th>Time</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>🎟️ Booking</td>
+            <td>Vande Bharat</td>
+            <td>Ravi Kumar</td>
+            <td>09:14 AM</td>
+            <td><span class="badge badge-green">Confirmed</span></td>
+          </tr>
+          <tr>
+            <td>❌ Cancellation</td>
+            <td>Shatabdi Express</td>
+            <td>Priya Sharma</td>
+            <td>08:52 AM</td>
+            <td><span class="badge badge-red">Cancelled</span></td>
+          </tr>
+          <tr>
+            <td>🎟️ Booking</td>
+            <td>Shatabdi Express</td>
+            <td>Arjun Mehta</td>
+            <td>08:30 AM</td>
+            <td><span class="badge badge-green">Confirmed</span></td>
+          </tr>
+          <tr>
+            <td>⚡ Trigger</td>
+            <td>Vande Bharat</td>
+            <td>—</td>
+            <td>08:00 AM</td>
+            <td><span class="badge badge-blue">Seat Updated</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

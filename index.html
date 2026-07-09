@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Railway Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="index.html">
+    <div class="logo-icon">🚆</div>
+    RailSystem
+  </a>
+  <div class="nav-links">
+    <a href="index.html" class="active">🏠 Dashboard</a>
+    <a href="admin.html">⚙️ Admin</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!-- Page header -->
+  <div class="page-header">
+    <h1>Railway Dashboard</h1>
+    <p>Live overview of trains, passengers and ticket activity</p>
+  </div>
+
+  <!-- Stat cards -->
+  <div class="stats-grid">
+    <div class="stat-card">
+      <div class="stat-icon blue">🚂</div>
+      <div class="stat-body">
+        <div class="stat-label">Total Trains</div>
+        <div class="stat-value blue">125</div>
+        <div class="stat-delta">↑ 3 added this week</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon teal">👥</div>
+      <div class="stat-body">
+        <div class="stat-label">Passengers</div>
+        <div class="stat-value teal">530</div>
+        <div class="stat-delta">↑ 12% vs last month</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon green">🎟️</div>
+      <div class="stat-body">
+        <div class="stat-label">Tickets Booked</div>
+        <div class="stat-value green">980</div>
+        <div class="stat-delta">↑ 8% vs last month</div>
+      </div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-icon red">❌</div>
+      <div class="stat-body">
+        <div class="stat-label">Cancellations</div>
+        <div class="stat-value red">45</div>
+        <div class="stat-delta" style="color:var(--red)">↑ 5 this week</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Search trains -->
+  <div class="panel">
+    <div class="panel-header">
+      <div>
+        <div class="panel-title"><span class="icon">🔍</span> Search Trains</div>
+        <div class="panel-subtitle">Find available routes and schedules</div>
+      </div>
+    </div>
+    <div class="search-row">
+      <div class="field">
+        <label for="fromInput">From</label>
+        <input type="text" placeholder="e.g. Vijayawada" id="fromInput">
+      </div>
+      <div class="field">
+        <label for="toInput">To</label>
+        <input type="text" placeholder="e.g. Hyderabad" id="toInput">
+      </div>
+      <div class="field">
+        <label for="dateInput">Date</label>
+        <input type="date" id="dateInput">
+      </div>
+      <button class="btn btn-primary" id="searchBtn">🔍 Search</button>
+    </div>
+  </div>
+
+  <!-- Available trains -->
+  <div class="panel">
+    <div class="panel-header">
+      <div>
+        <div class="panel-title"><span class="icon">🚉</span> Available Trains</div>
+        <div class="panel-subtitle" id="trainResultsSubtitle">Showing 2 trains for selected route</div>
+      </div>
+      <span class="badge badge-green">● Live</span>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Train</th>
+            <th>Source</th>
+            <th>Destination</th>
+            <th>Departure</th>
+            <th>Duration</th>
+            <th>Available Seats</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Vande Bharat</strong><br><span style="color:var(--muted);font-size:.78rem">#12345</span></td>
+            <td>Vijayawada</td>
+            <td>Hyderabad</td>
+            <td>06:00 AM</td>
+            <td>3h 30m</td>
+            <td><span class="badge badge-green">34 seats</span></td>
+            <td><span class="badge badge-green">● On Time</span></td>
+          </tr>
+          <tr>
+            <td><strong>Shatabdi Express</strong><br><span style="color:var(--muted);font-size:.78rem">#22691</span></td>
+            <td>Chennai</td>
+            <td>Bengaluru</td>
+            <td>07:15 AM</td>
+            <td>5h 00m</td>
+            <td><span class="badge badge-amber">22 seats</span></td>
+            <td><span class="badge badge-amber">● Delayed</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Book ticket -->
+  <div class="panel">
+    <div class="panel-header">
+      <div>
+        <div class="panel-title"><span class="icon">🎟️</span> Book a Ticket</div>
+        <div class="panel-subtitle">Fill in passenger details to reserve a seat</div>
+      </div>
+    </div>
+    <div class="booking-grid">
+      <div class="field">
+        <label for="pname">Passenger Name</label>
+        <input type="text" id="pname" placeholder="Full name">
+      </div>
+      <div class="field">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" placeholder="+91 00000 00000">
+      </div>
+      <div class="field">
+        <label for="trainSelect">Select Train</label>
+        <select id="trainSelect">
+          <option value="">-- Choose a train --</option>
+          <option>Vande Bharat (#12345)</option>
+          <option>Shatabdi Express (#22691)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="seat">Seat Number</label>
+        <input type="text" id="seat" placeholder="e.g. A-12">
+      </div>
+      <div class="field span-2" style="grid-column:1/-1">
+        <label for="travelClass">Travel Class</label>
+        <select id="travelClass">
+          <option>Sleeper Class (SL)</option>
+          <option>AC 3-Tier (3A)</option>
+          <option>AC 2-Tier (2A)</option>
+          <option>First Class AC (1A)</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn btn-success" style="margin-top:18px" id="bookBtn">✅ Confirm Booking</button>
+    <div class="alert alert-success" id="msg">
+      <span>✅</span>
+      <span>Booking confirmed! Your ticket has been reserved successfully. (Demo — frontend only)</span>
+    </div>
+  </div>
+
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
