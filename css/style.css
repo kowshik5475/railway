@@ -448,6 +448,56 @@ tbody tr:hover { background: rgba(59,130,246,.04); }
 .progress-fill.green { background: linear-gradient(90deg, var(--green), #34d399); }
 .progress-fill.amber { background: linear-gradient(90deg, var(--amber), #fbbf24); }
 
+/* ── Alert error variant ──────────────────────── */
+.alert-error {
+  background: rgba(239,68,68,.1);
+  border: 1px solid rgba(239,68,68,.3);
+  color: var(--red);
+  border-radius: var(--radius-sm);
+  padding: 11px 16px;
+  font-size: .875rem;
+  font-weight: 500;
+  animation: fadeIn .2s ease;
+}
+
+/* ── Admin: DB object browser ─────────────────── */
+.db-object-group { margin-bottom: 18px; }
+.db-object-group:last-child { margin-bottom: 0; }
+
+.db-group-label {
+  font-size: .72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .07em;
+  color: var(--muted);
+  padding: 0 4px 6px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 6px;
+}
+
+.db-object-list { list-style: none; }
+
+.db-object-item {
+  padding: 7px 10px;
+  border-radius: var(--radius-sm);
+  font-size: .85rem;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background var(--trans), color var(--trans);
+  user-select: none;
+}
+
+.db-object-item:hover {
+  background: rgba(59,130,246,.08);
+  color: var(--text);
+}
+
+.db-object-item.active {
+  background: rgba(59,130,246,.15);
+  color: var(--accent2);
+  font-weight: 600;
+}
+
 /* ── Scrollbar ────────────────────────────────── */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: var(--bg); }

@@ -36,76 +36,125 @@
       <div class="stat-icon blue">🗄️</div>
       <div class="stat-body">
         <div class="stat-label">Tables</div>
-        <div class="stat-value blue">5</div>
+        <div class="stat-value blue"><span id="countTables">6</span></div>
       </div>
     </div>
     <div class="stat-card">
       <div class="stat-icon teal">👁️</div>
       <div class="stat-body">
         <div class="stat-label">Views</div>
-        <div class="stat-value teal">3</div>
+        <div class="stat-value teal"><span id="countViews">3</span></div>
       </div>
     </div>
     <div class="stat-card">
       <div class="stat-icon green">⚙️</div>
       <div class="stat-body">
         <div class="stat-label">Stored Procedures</div>
-        <div class="stat-value green">3</div>
+        <div class="stat-value green"><span id="countProcs">3</span></div>
       </div>
     </div>
     <div class="stat-card">
       <div class="stat-icon red">⚡</div>
       <div class="stat-body">
         <div class="stat-label">Triggers</div>
-        <div class="stat-value red">3</div>
+        <div class="stat-value red"><span id="countTriggers">3</span></div>
       </div>
     </div>
   </div>
 
-  <!-- Schema info cards -->
-  <div class="info-grid">
-    <div class="info-card">
-      <div class="info-card-header">
-        <span>🗄️</span> Tables
+  <!-- Database Objects + Selected Object viewer -->
+  <div style="display:grid;grid-template-columns:260px 1fr;gap:20px;margin-bottom:20px;align-items:start">
+
+    <!-- Left: object list -->
+    <div class="panel" style="margin-bottom:0">
+      <div class="panel-header" style="margin-bottom:14px">
+        <div class="panel-title"><span class="icon">🗂️</span> Database Objects</div>
       </div>
-      <ul>
-        <li>Trains</li>
-        <li>Passengers</li>
-        <li>Tickets</li>
-        <li>Cancellation Log</li>
-        <li>Confirmation Log</li>
-      </ul>
-    </div>
-    <div class="info-card">
-      <div class="info-card-header">
-        <span>👁️</span> Views
+
+      <div class="db-object-group">
+        <div class="db-group-label">🗄️ Tables</div>
+        <ul class="db-object-list" id="listTables">
+          <li class="db-object-item" data-object="Trains" data-type="table">Trains</li>
+          <li class="db-object-item" data-object="Passengers" data-type="table">Passengers</li>
+          <li class="db-object-item" data-object="Tickets" data-type="table">Tickets</li>
+          <li class="db-object-item" data-object="Seats" data-type="table">Seats</li>
+          <li class="db-object-item" data-object="CancellationLog" data-type="table">Cancellation Log</li>
+          <li class="db-object-item" data-object="ConfirmationLog" data-type="table">Confirmation Log</li>
+        </ul>
       </div>
-      <ul>
-        <li>Train Schedule</li>
-        <li>Active Bookings</li>
-        <li>Seat Occupancy</li>
-      </ul>
-    </div>
-    <div class="info-card">
-      <div class="info-card-header">
-        <span>⚙️</span> Stored Procedures
+
+      <div class="db-object-group">
+        <div class="db-group-label">👁️ Views</div>
+        <ul class="db-object-list" id="listViews">
+          <li class="db-object-item" data-object="TrainSchedule" data-type="view">Train Schedule</li>
+          <li class="db-object-item" data-object="ActiveBookings" data-type="view">Active Bookings</li>
+          <li class="db-object-item" data-object="SeatOccupancy" data-type="view">Seat Occupancy</li>
+        </ul>
       </div>
-      <ul>
-        <li>Book Ticket</li>
-        <li>Cancel Ticket</li>
-        <li>Booking History</li>
-      </ul>
-    </div>
-    <div class="info-card">
-      <div class="info-card-header">
-        <span>⚡</span> Triggers
+
+      <div class="db-object-group">
+        <div class="db-group-label">⚙️ Stored Procedures</div>
+        <ul class="db-object-list" id="listProcs">
+          <li class="db-object-item" data-object="BookTicket" data-type="procedure">Book Ticket</li>
+          <li class="db-object-item" data-object="CancelTicket" data-type="procedure">Cancel Ticket</li>
+          <li class="db-object-item" data-object="BookingHistory" data-type="procedure">Booking History</li>
+        </ul>
       </div>
-      <ul>
-        <li>Seat Availability</li>
-        <li>Booking Confirmation</li>
-        <li>Cancellation Log</li>
-      </ul>
+
+      <div class="db-object-group">
+        <div class="db-group-label">⚡ Triggers</div>
+        <ul class="db-object-list" id="listTriggers">
+          <li class="db-object-item" data-object="SeatAvailability" data-type="trigger">Seat Availability</li>
+          <li class="db-object-item" data-object="BookingConfirmation" data-type="trigger">Booking Confirmation</li>
+          <li class="db-object-item" data-object="CancellationLogTrigger" data-type="trigger">Cancellation Log</li>
+        </ul>
+      </div>
     </div>
+
+    <!-- Right: selected object viewer -->
+    <div class="panel" style="margin-bottom:0" id="objectViewerPanel">
+      <div class="panel-header" style="margin-bottom:16px">
+        <div>
+          <div class="panel-title"><span class="icon">📄</span> Selected Object</div>
+          <div class="panel-subtitle" id="objectViewerSubtitle">Click any item on the left to inspect it</div>
+        </div>
+        <span class="badge badge-blue" id="objectViewerBadge" style="display:none"></span>
+      </div>
+
+      <!-- Placeholder state -->
+      <div id="objectViewerPlaceholder" style="text-align:center;padding:40px 0;color:var(--muted)">
+        <div style="font-size:2.5rem;margin-bottom:12px">🗃️</div>
+        <p style="font-size:.9rem">Select a table, view, procedure, or trigger<br>to preview its structure and sample data.</p>
+      </div>
+
+      <!-- Table/view record display -->
+      <div id="objectViewerTable" style="display:none">
+        <div class="table-wrap">
+          <table id="selectedObjectTable">
+            <thead id="selectedObjectThead"></thead>
+            <tbody id="selectedObjectTbody">
+              <!-- Rows injected by JS / PHP -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Procedure/trigger definition display -->
+      <div id="objectViewerDef" style="display:none">
+        <pre id="objectDefPre" style="
+          background:var(--surface2);
+          border:1px solid var(--border);
+          border-radius:var(--radius-sm);
+          padding:16px 20px;
+          font-size:.82rem;
+          color:var(--muted);
+          overflow-x:auto;
+          white-space:pre-wrap;
+          line-height:1.7;
+        "></pre>
+      </div>
+    </div>
+
   </div>
 
   <!-- Analytics -->
@@ -115,29 +164,28 @@
         <div class="panel-title"><span class="icon">📊</span> System Analytics</div>
         <div class="panel-subtitle">Capacity and performance metrics</div>
       </div>
-      <span class="badge badge-blue">Demo data</span>
     </div>
     <div class="progress-group">
       <div class="progress-item">
         <div class="progress-meta">
           <span class="progress-label">Seat Occupancy Rate</span>
-          <span class="progress-value">80%</span>
+          <span class="progress-value" id="occRate">—</span>
         </div>
-        <div class="progress-bar"><div class="progress-fill blue" style="width:80%"></div></div>
+        <div class="progress-bar"><div class="progress-fill blue" id="occBar" style="width:0%"></div></div>
       </div>
       <div class="progress-item">
         <div class="progress-meta">
           <span class="progress-label">Top Booked Train Score</span>
-          <span class="progress-value">60%</span>
+          <span class="progress-value" id="topTrainScore">—</span>
         </div>
-        <div class="progress-bar"><div class="progress-fill green" style="width:60%"></div></div>
+        <div class="progress-bar"><div class="progress-fill green" id="topTrainBar" style="width:0%"></div></div>
       </div>
       <div class="progress-item">
         <div class="progress-meta">
           <span class="progress-label">Cancellation Rate</span>
-          <span class="progress-value">4.6%</span>
+          <span class="progress-value" id="cancelRate">—</span>
         </div>
-        <div class="progress-bar"><div class="progress-fill amber" style="width:4.6%"></div></div>
+        <div class="progress-bar"><div class="progress-fill amber" id="cancelBar" style="width:0%"></div></div>
       </div>
     </div>
   </div>
@@ -151,7 +199,7 @@
       </div>
     </div>
     <div class="table-wrap">
-      <table>
+      <table id="activityTable">
         <thead>
           <tr>
             <th>Event</th>
@@ -161,35 +209,8 @@
             <th>Status</th>
           </tr>
         </thead>
-        <tbody>
-          <tr>
-            <td>🎟️ Booking</td>
-            <td>Vande Bharat</td>
-            <td>Ravi Kumar</td>
-            <td>09:14 AM</td>
-            <td><span class="badge badge-green">Confirmed</span></td>
-          </tr>
-          <tr>
-            <td>❌ Cancellation</td>
-            <td>Shatabdi Express</td>
-            <td>Priya Sharma</td>
-            <td>08:52 AM</td>
-            <td><span class="badge badge-red">Cancelled</span></td>
-          </tr>
-          <tr>
-            <td>🎟️ Booking</td>
-            <td>Shatabdi Express</td>
-            <td>Arjun Mehta</td>
-            <td>08:30 AM</td>
-            <td><span class="badge badge-green">Confirmed</span></td>
-          </tr>
-          <tr>
-            <td>⚡ Trigger</td>
-            <td>Vande Bharat</td>
-            <td>—</td>
-            <td>08:00 AM</td>
-            <td><span class="badge badge-blue">Seat Updated</span></td>
-          </tr>
+        <tbody id="activityTableBody">
+          <!-- Rows injected by JS / PHP -->
         </tbody>
       </table>
     </div>
@@ -197,5 +218,8 @@
 
 </div>
 
+<!-- demo-admin.js: remove this line when PHP is connected -->
+<script src="js/demo-admin.js" defer></script>
+<script src="js/admin.js" defer></script>
 </body>
 </html>
